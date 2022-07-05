@@ -27,7 +27,7 @@ try{
 }
 
 async function main() {
-    console.log('main')
+    consola.log('main')
     const map = db.getData("/map");
     let command = ''
     for (let i = 0; i < num; i++) {
@@ -69,16 +69,16 @@ async function pullCode(command) {
     return new Promise((resolve) => {
         exec(command, (error, stdout, stderr) => {
             if (error) {
-                console.error(`exec pullCode error: ${error}`);
+                consola.error(`exec pullCode error: ${error}`);
                 if (error.message.includes("no such ref")) {
                     resolve()
                 }
             }
-            console.log(`stdout: ${stdout}`);
+            consola.log(`stdout: ${stdout}`);
             if (stdout.includes("up-to-date")) {
                 resolve()
             }
-            console.error(`stderr: ${stderr}`);
+            consola.error(`stderr: ${stderr}`);
         });
     })
 }
