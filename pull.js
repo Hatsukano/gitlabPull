@@ -8,19 +8,19 @@ const exec = util.promisify(require('child_process').exec);
 const fs = require('fs-extra')
 const util = require('util');
 
-// 配置项
-const gitlabAddr = '' // gitlab地址
+// configs
+const gitlabAddr = '' // gitlab address
 const gitlabToken = '' // gitlabToken
-const num = 10 // 拉取 num * 100 = 1000个代码仓库
+const num = 10 // pull num * 100 = 1000 repo
 
-// 第一次运行时初始化数据库
+// init local database first time running the script
 try{
     db.getData("/first");
 }catch(err){
     let arr = new Array(1000).fill(1)
     let map = {}
     arr.forEach((i,idx) => {
-        map[idx] = false // 未拉取的全部标记为false
+        map[idx] = false // init
     })
     db.push("/map",map);
     db.push("/first",true);
@@ -38,7 +38,7 @@ async function main() {
             if(map[i * 100 + j]){
                 consola.info(`SKIP ${i * 100 + j + 1}`)
             }else{
-                consola.info(`正在处理[${i * 100 + j + 1}/${(i + 1) * 100}]`)
+                consola.info(`Processing ${i * 100 + j + 1}/${(i + 1) * 100}]`)
                 let project = projects[j]
                 thisProjectURL = project['ssh_url_to_repo']
                 thisProjectPath = project['path_with_namespace']
@@ -46,7 +46,7 @@ async function main() {
                     command = `cd /data/git.kissneck.com/script/${thisProjectPath} && git pull`
                     consola.info(`exec ${command}`)
                     await pullCode(command)
-                    consola.success(`${thisProjectURL} 更新完毕`)
+                    consola.success(`${thisProjectURL} Pull Success`)
                     db.push("/map",{
                         [i * 100 + j]: true
                     },false);
@@ -54,7 +54,7 @@ async function main() {
                     command = `git clone ${thisProjectURL} ${thisProjectPath} --progress`
                     consola.info(`exec ${command}`)
                     await cloneCode(command)
-                    consola.success(`${thisProjectURL} 拉取完毕`)
+                    consola.success(`${thisProjectURL} Clone Success`)
                     db.push("/map",{
                         [i * 100 + j]: true
                     },false);
