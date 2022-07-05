@@ -2,7 +2,7 @@
 gitlab搬迁用代码,gitlab迁移,gitlab批量下载,gitlab批量clone。
 
 # How To Use
-__I didnt run on other language bashes.So you need to configure the success requirement of async function cloneCode__
+__Note: I didnt run on other language bashes.So you need to configure the success requirement of async function cloneCode if you are not in China.__
 
 1. clone this repo And configure your gitlab and clone infos in the scirpt from line 12 to line 14.
 2. cd to your directory And run commands
