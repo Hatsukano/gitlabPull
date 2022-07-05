@@ -17,7 +17,7 @@ const num = 10 // pull num * 100 = 1000 repo
 try{
     db.getData("/first");
 }catch(err){
-    let arr = new Array(1000).fill(1)
+    let arr = new Array(num * 100).fill(1)
     let map = {}
     arr.forEach((i,idx) => {
         map[idx] = false // init
