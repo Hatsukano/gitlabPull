@@ -1,12 +1,12 @@
 {
-  "name": "gitlab",
+  "name": "gitlabPull",
   "version": "1.0.0",
-  "description": "",
+  "description": "gitlab 批量下载脚本 批量拉取脚本",
   "main": "pull.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pull": "node pull"
   },
-  "author": "",
+  "author": "Hatsukano",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
