@@ -4,7 +4,7 @@
   "description": "gitlab 批量下载脚本 批量拉取脚本",
   "main": "pull.js",
   "scripts": {
-    "pull": "node pull"
+    "pull": "node ./pull.js"
   },
   "author": "Hatsukano",
   "license": "ISC",
